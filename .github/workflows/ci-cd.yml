@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - master  # Trigger on pushes to the 'master' branch
+      - main  # Trigger on pushes to the 'main' branch
 
 jobs:
   build:
@@ -33,7 +33,7 @@ jobs:
         run: |
           sshpass -p "${PASSWORD}" ssh -o StrictHostKeyChecking=no ${USER}@${HOST} << 'EOF'
           cd /var/www/node-1
-          git pull origin master
+          git pull origin main
           npm install
           sudo systemctl restart node-app
           EOF
@@ -47,7 +47,7 @@ jobs:
         run: |
           sshpass -p "${PASSWORD}" ssh -o StrictHostKeyChecking=no ${USER}@${HOST} << 'EOF'
           cd /var/www/node-1
-          git pull origin master
+          git pull origin main
           npm install
           sudo systemctl restart node-app
           EOF
